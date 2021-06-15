@@ -1,16 +1,18 @@
-import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
+import { Button, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
 
+import db from './firebase'
 import './Todo.css'
 
-const Todo = ({text,}) => {
+const Todo = (props) => {
     return (
         <List className='todo__list'>
             <ListItem>
                 <ListItemAvatar>
 
                 </ListItemAvatar>
-                <ListItemText primary={text} />
+                <ListItemText primary={props.todo.todo} />
             </ListItem>
+            <Button onClick={event=>db.collection('todos').doc(props.todo.id).delete()}>Delete</Button>
         </List>
     )
 }
